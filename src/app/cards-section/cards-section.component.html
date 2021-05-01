@@ -1,0 +1,29 @@
+<section class="container-fluid">
+  <div class="row card-wrapper no-gutters catsList">
+    <div class="col-12 header-section">
+      <div class="col-12 header row">
+        <div *ngFor="let filter of defaultFilters; let idx = index;" class="col-4" style="text-align: center">
+          <label> {{filter.name}}
+            <input type="checkbox" [checked]="filter.checked" (click)="filterNewList(filter.value, idx)">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div *ngIf="dataLoaded" class="row">
+        <div *ngFor="let cat of listOfCats; let idx2 = index" class="col-3 cats">
+          <div *ngIf="cat.image && cat.image.url" class="item" (click)="showCatDetails(cat, idx2)">
+            <img class="largerImage" src="{{cat.image.url}}"/>
+            <div class="item-content">
+              <div *ngIf="cat.name" class="row marginBottom">
+                <div class="col-12" style="text-align: center">
+                  <span class="cat-name">{{ cat.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
